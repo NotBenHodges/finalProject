@@ -1,4 +1,4 @@
-var geoDataP = d3.json('gz_2010_us_050_00_5m.json')
+var geoDataP = d3.json('USStates5m.json')
 
 geoDataP.then(function(geoData){
   console.log(geoData)
@@ -8,6 +8,8 @@ geoDataP.then(function(geoData){
 var drawMap = function(geoData){
   var screen = {width:700, height:600}
   var projection = d3.geoAlbersUSA();
+  var stateGenerator = d3.geoPath()
+                          .projection(projection);
   var svg = d3.select('svg')
   var states = svg.append('g')
                   .attr('id','states')
