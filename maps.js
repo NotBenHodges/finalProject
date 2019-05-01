@@ -11,6 +11,7 @@ var drawMap = function(geoData){
   var projection = d3.geoAlbersUSA()
   var stateGenerator = d3.geoPath()
                           .projection(projection);
+
   var svg = d3.select('svg')
   var states = svg.append('g')
                   .attr('id','states')
@@ -19,6 +20,7 @@ var drawMap = function(geoData){
                   .enter()
                   .append('g')
                   .classed('state',true);
+                  
   states.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','red')
