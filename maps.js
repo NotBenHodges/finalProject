@@ -8,6 +8,10 @@ geoDataP.then(function(geoData){
 var h = 600;
 var w = 800;
 
+var color = d3.scaleQuantize()
+              . range(['#babad6','#8282af','#535291',
+              '#2f2e7c','#0e0d44']);
+
 var drawMap = function(geoData){
   var screen = {width:700, height:600};
   var projection = d3.geoAlbersUsa()
@@ -29,6 +33,40 @@ var drawMap = function(geoData){
 
   states.append('path')
         .attr('d',stateGenerator)
-        .attr('stroke','blue')
+        .attr('stroke','green')
         .attr('fill','none')
+
+  d3.csv('statesAndCounties.csv',function(data){
+    d3.json('USStates5m.json',function(json){
+      for (var i = 0; i < data.length; i++){
+
+        var dataState = data[i].name;
+
+        var dataValue = parseFloat(data[i].poverty);
+
+        for (var n = 0; n < json.features.length; n++){
+          var jsonState = json.features[n].properties.name;
+          if(dataState == jsonState){
+            json.features[n].properties.value = dataValue;
+            break;
+          }
+        }
+      }
+      svg.selectAll('path')
+          .data(json.features)
+          .enter()
+          .append('path')
+          .attr('d',path)
+          .style('fill',function(d){
+            var value = d.properties.value;
+
+            if (value){
+              return color(value);
+            }
+            else{
+              return 'white';
+            }
+          })
+    })
+  })
 }
