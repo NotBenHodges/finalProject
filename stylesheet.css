@@ -1,14 +1,10 @@
-.states{
-  background-color: grey;
-}
-
 .states :hover {
   fill: blue;
 }
 
 .state-borders {
   fill: none;
-  stroke: red;
+  stroke: grey;
   stroke-width: 0.5px;
   stroke-linejoin: round;
   stroke-linecap: round;

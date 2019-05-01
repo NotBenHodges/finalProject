@@ -1,11 +1,11 @@
-var geoDataP = d3.json('https://d3js.org/us-10m.v1.json')
+var geoDataP = d3.json('USStates5m.json')
 
 geoDataP.then(function(geoData){
   console.log(geoData.features)
   drawMap(geoData)
 })
 
-/*
+
 var drawMap = function(geoData){
   var screen = {width:700, height:600}
   var projection = d3.geoAlbersUSA()
@@ -24,4 +24,3 @@ var drawMap = function(geoData){
         .attr('stroke','red')
         .attr('fill','none')
 }
-*/
