@@ -51,14 +51,14 @@ var drawMap = function(geoData,stateData){
   states.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
-        /*.attr('fill', function(d){
+        .attr('fill', function(d){
           //console.log(parseInt(d.poverty))
           var str = d.properties.ESTIMATE
           str = str.replace(/,/g,"")
           str = parseInt(str)
           console.log(str)
           return color(str);
-        });*/
+        });
 
 
   states.append('text')
