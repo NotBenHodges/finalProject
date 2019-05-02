@@ -1,9 +1,15 @@
-var geoDataP = d3.json('USStates5m.json')
+var geoP = d3.json('USStates5m.json')
+var stateP = d3.csv('justStates.csv')
 
-geoDataP.then(function(geoData){
-  console.log(geoData.features)
+Promise.all([geoP,stateP]).then(function(values){
+  var geoData = values[0];
+  var stateData = values[1];
+});
+
+geoP.then(function(geoData,stateData){
+  console.log(stateData)
   drawMap(geoData)
-})
+});
 
 var h = 600;
 var w = 800;
@@ -16,6 +22,7 @@ var drawMap = function(geoData){
   var screen = {width:700, height:600};
   var projection = d3.geoAlbersUsa()
                       .translate([w/2,h/2]);
+
   var stateGenerator = d3.geoPath()
                           .projection(projection);
 
@@ -23,19 +30,26 @@ var drawMap = function(geoData){
               .attr('height',h)
               .attr('width',w);
 
-  var states = svg.append('g')
-                  .attr('id','states')
+  var counties = svg.append('g')
+                  .attr('id','counties')
                   .selectAll('g')
                   .data(geoData.features)
                   .enter()
                   .append('g')
-                  .classed('state',true);
+                  .classed('county',true);
 
-  states.append('path')
+  counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
-        .attr('fill','none')
+        .attr('fill','white');
 
+  var stateDict = {}
+  stateData.forEach(function(state){
+    stateDict[state.NAME.trim()]=state;
+  })
+  console.log(stateDict);
+
+/*
   d3.csv('justStates.csv',function(data){
 
     console.log(data.poverty);
@@ -50,7 +64,7 @@ var drawMap = function(geoData){
     ]);
 
     d3.json('USStates5m.json',function(json){
-      console.log(json.features);
+      console.log('hello world');
       for (var i = 0; i < data.length; i++){
 
         var dataState = data[i].name;
@@ -80,5 +94,5 @@ var drawMap = function(geoData){
             }
           });
     });
-  });
+  });*/
 }
