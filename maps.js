@@ -4,21 +4,21 @@ var stateP = d3.csv('justStates.csv')
 Promise.all([geoP,stateP]).then(function(values){
   var geoData = values[0];
   var stateData = values[1];
+  drawMap(geoData,stateData)
 });
-
-geoP.then(function(geoData,stateData){
-  console.log(stateData)
+/*
+geoP.then(function(geoData){
   drawMap(geoData)
 });
-
+*/
 var h = 600;
 var w = 800;
 
 var color = d3.scaleQuantize()
-              . range(['#babad6','#8282af','#535291',
+              .range(['#babad6','#8282af','#535291',
               '#2f2e7c','#0e0d44']);
 
-var drawMap = function(geoData){
+var drawMap = function(geoData,stateData){
   var screen = {width:700, height:600};
   var projection = d3.geoAlbersUsa()
                       .translate([w/2,h/2]);
@@ -45,9 +45,11 @@ var drawMap = function(geoData){
 
   var stateDict = {}
   stateData.forEach(function(state){
-    stateDict[state.NAME.trim()]=state;
+    stateDict[state.Name.trim()]=state;
   })
   console.log(stateDict);
+
+  
 
 /*
   d3.csv('justStates.csv',function(data){
