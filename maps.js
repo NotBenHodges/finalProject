@@ -40,11 +40,20 @@ var drawMap = function(geoData){
 
     console.log(data.poverty);
 
+    color.domain([
+      d3.min(data, function(d){
+        return d.poverty;
+      }),
+      d3.max(data, function(data){
+        return d.poverty;
+      })
+    ]);
+
     d3.json('USStates5m.json',function(json){
+      console.log(json.features);
       for (var i = 0; i < data.length; i++){
 
         var dataState = data[i].name;
-
         var dataValue = parseFloat(data[i].poverty);
 
         for (var n = 0; n < json.features.length; n++){
@@ -69,7 +78,7 @@ var drawMap = function(geoData){
             else{
               return 'white';
             }
-          })
-    })
-  })
+          });
+    });
+  });
 }
