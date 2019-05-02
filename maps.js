@@ -22,14 +22,14 @@ var drawMap = function(geoData,stateData){
 
   stateData.forEach(function(state){
     stateDict[state.Name.trim()]=state.Postal;
-    stateDict[state.FIPS.trim()]=state.poverty;
+    stateDict[state.Postal.trim()]=state.poverty;
   });
   console.log(stateDict);
 
   geoData.features.forEach(function(state){
     state.properties.ABBR = stateDict[state.properties.NAME]
-    state.properties.ESTIMATE = stateDict[state.properties.poverty]
-    //console.log(state.properties.ABBR);
+    state.properties.ESTIMATE = stateDict[state.properties.FIPS]
+    console.log(state.properties.ESTIMATE);
   });
 
   var svg = d3.select('svg')
@@ -51,15 +51,14 @@ var drawMap = function(geoData,stateData){
   states.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
-        .attr('fill', function(d){
+        /*.attr('fill', function(d){
           //console.log(parseInt(d.poverty))
           var str = d.properties.ESTIMATE
           str = str.replace(/,/g,"")
           str = parseInt(str)
           console.log(str)
           return color(str);
-        });
-
+        });*/
 
 
   states.append('text')
@@ -72,4 +71,33 @@ var drawMap = function(geoData,stateData){
         .attr('y',function(d){
           return stateGenerator.centroid(d)[1];
         });
+
+  var svg2 = d3.select('body')
+                .append('svg')
+                .attr('height',100)
+                .attr('width',100);
+
+  var xScale = d3.scaleLinear()
+                  .domain([0,56])
+                  .range([0,100])
+
+  var yScale = d3.scaleLinear()
+                  .domain([0,4,080,377])
+                  .range([0,100])
+
+  var rect = d3.select('svg2')
+                .data(stateData)
+                .enter()
+                .appened('rect')
+                .attr('x',function(d){
+                  return xScale(d);
+                })
+                .attr('y',function(d,i){
+                  return i;
+                })
+                .attr('height',function(d){
+                  return yScale(d);
+                })
+                .attr('fill','green');
+
 }
