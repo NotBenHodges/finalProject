@@ -36,7 +36,10 @@ var drawMap = function(geoData){
         .attr('stroke','green')
         .attr('fill','none')
 
-  d3.csv('statesAndCounties.csv',function(data){
+  d3.csv('justStates.csv',function(data){
+
+    console.log(data.poverty);
+
     d3.json('USStates5m.json',function(json){
       for (var i = 0; i < data.length; i++){
 
