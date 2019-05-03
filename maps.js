@@ -45,7 +45,7 @@ var drawMap = function(geoData,stateData){
                   .classed('state',true);
 
   var color = d3.scaleSequential(d3.interpolateBlues)
-                .domain([0,42583651])
+                .domain([0,42583651]);
 
 
   states.append('path')
