@@ -67,6 +67,7 @@ var drawMap = function(geoData,stateData){
         });
 
   document.getElementById('allPop').onclick = function(d){
+    document.getElementById('title').innerHTML = 'Poverty by Population Size'
     states.append('path')
           .attr('d',stateGenerator)
           .attr('stroke','green')
@@ -81,6 +82,7 @@ var drawMap = function(geoData,stateData){
   };
 
 document.getElementById('allPer').onclick = function(d){
+  document.getElementById('title').innerHTML = 'Poverty by Percentage'
   states.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
