@@ -23,14 +23,18 @@ var drawMap = function(geoData,stateData){
   stateData.forEach(function(state){
     stateDict[state.Name.trim()]=state.Postal;
     stateDict[state.Postal.trim()]=state.poverty;
+    stateDict[state.FIPS.trim()]=state.Age017;
+    stateDict[state.FIPS.trim()]=state.Median;
   });
   console.log(stateDict);
 
   geoData.features.forEach(function(state){
     state.properties.ABBR = stateDict[state.properties.NAME]
-    state.properties.ESTIMATE = stateDict[state.properties.FIPS]
-    console.log(state.properties.ESTIMATE);
+    state.properties.ESTIMATE = stateDict[state.properties.ABBR]
+    state.properties.ESTIMATE2 = stateDict[state.properties.STATE]
+    console.log(state.properties.ESTIMATE2);
   });
+  console.log(geoData)
 
   var svg = d3.select('svg')
               .attr('height',h)
@@ -44,8 +48,11 @@ var drawMap = function(geoData,stateData){
                   .append('g')
                   .classed('state',true);
 
-  var color = d3.scaleSequential(d3.interpolateBlues)
-                .domain([0,42583651]);
+  var color = d3.scaleSequential(d3.interpolateGreens)
+                .domain([0,4000000]);
+
+  var color2 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([1700000]);
 
 
   states.append('path')
@@ -60,7 +67,6 @@ var drawMap = function(geoData,stateData){
           return color(str);
         });
 
-
   states.append('text')
         .text(function(d){
           return d.properties.ABBR;
@@ -71,7 +77,7 @@ var drawMap = function(geoData,stateData){
         .attr('y',function(d){
           return stateGenerator.centroid(d)[1];
         });
-
+/*
   var svg2 = d3.select('body')
                 .append('svg')
                 .attr('height',100)
@@ -83,21 +89,6 @@ var drawMap = function(geoData,stateData){
 
   var yScale = d3.scaleLinear()
                   .domain([0,4,080,377])
-                  .range([0,100])
-
-  var rect = d3.select('svg2')
-                .data(stateData)
-                .enter()
-                .appened('rect')
-                .attr('x',function(d){
-                  return xScale(d);
-                })
-                .attr('y',function(d,i){
-                  return i;
-                })
-                .attr('height',function(d){
-                  return yScale(d);
-                })
-                .attr('fill','green');
+                  .range([0,100])*/
 
 }
