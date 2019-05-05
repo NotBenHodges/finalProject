@@ -133,6 +133,7 @@ document.getElementById('median').onclick = function(d){
     console.log('hello Ben');
   };
 
+
 /*
   var svg2 = d3.select('body')
                 .append('svg')
