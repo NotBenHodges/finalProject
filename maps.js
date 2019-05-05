@@ -24,7 +24,6 @@ var drawMap = function(geoData,stateData){
     stateDict[state.Name.trim()]=state.Postal;
     stateDict[state.Postal.trim()]=state.poverty;
     stateDict[state.FIPS.trim()]=state.Age017;
-    stateDict[state.FIPS.trim()]=state.Median;
   });
   console.log(stateDict);
 
@@ -54,7 +53,6 @@ var drawMap = function(geoData,stateData){
   var color2 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([1700000]);
 
-
   states.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
@@ -66,6 +64,10 @@ var drawMap = function(geoData,stateData){
           console.log(str)
           return color(str);
         });
+
+  document.getElementById('b').onclick = function(d){
+    var str = d.properties.ESTIMATE2
+  };
 
   states.append('text')
         .text(function(d){
