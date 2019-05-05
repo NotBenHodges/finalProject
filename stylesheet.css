@@ -1,3 +1,8 @@
 body{
   background-color: #ccc;
 }
+
+.buttons{
+  float: right;
+  clear: both;
+}

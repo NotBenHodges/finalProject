@@ -20,10 +20,13 @@ var drawMap = function(geoData,stateData){
 
   var stateDict = {}
 
+  var stateDict2 = {}
+
   stateData.forEach(function(state){
     stateDict[state.Name.trim()]=state.Postal;
     stateDict[state.Postal.trim()]=state.poverty;
     stateDict[state.FIPS.trim()]=state.AllAges;
+    stateDict2[state.FIPS.trim()]=state.Median;
   });
   console.log(stateDict);
 
@@ -31,7 +34,8 @@ var drawMap = function(geoData,stateData){
     state.properties.ABBR = stateDict[state.properties.NAME]
     state.properties.ESTIMATE = stateDict[state.properties.ABBR]
     state.properties.ESTIMATE2 = stateDict[state.properties.STATE]
-    console.log(state.properties.ESTIMATE2);
+    state.properties.MEDIAN = stateDict2[state.properties.STATE]
+    console.log(state.properties.MEDIAN);
   });
   console.log(geoData)
 
@@ -52,6 +56,9 @@ var drawMap = function(geoData,stateData){
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([7,20]);
+
+  var color3 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
 
 
   states.append('path')
@@ -93,6 +100,21 @@ document.getElementById('allPer').onclick = function(d){
           str = parseInt(str)
           console.log(str)
           return color2(str);
+        });
+};
+
+document.getElementById('median').onclick = function(d){
+  document.getElementById('title').innerHTML = 'Median Household Income'
+  states.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.MEDIAN
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          console.log(str)
+          return color3(str);
         });
 };
 
