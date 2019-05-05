@@ -83,7 +83,7 @@ var drawMap = function(geoData,stateData){
             var str = d.properties.ESTIMATE
             str = str.replace(/,/g,"")
             str = parseInt(str)
-            console.log(str)
+            //console.log(str)
             return color(str);
           });
   };
@@ -98,7 +98,7 @@ document.getElementById('allPer').onclick = function(d){
           var str = d.properties.ESTIMATE2
           str = str.replace(/,/g,"")
           str = parseInt(str)
-          console.log(str)
+          //console.log(str)
           return color2(str);
         });
 };
@@ -113,7 +113,7 @@ document.getElementById('median').onclick = function(d){
           var str = d.properties.MEDIAN
           str = str.replace(/,/g,"")
           str = parseInt(str)
-          console.log(str)
+          //console.log(str)
           return color3(str);
         });
 };
@@ -128,6 +128,11 @@ document.getElementById('median').onclick = function(d){
         .attr('y',function(d){
           return stateGenerator.centroid(d)[1];
         });
+
+  document.getElementById('allPop').onmouseover = function(d){
+    console.log('hello Ben');
+  };
+
 /*
   var svg2 = d3.select('body')
                 .append('svg')
