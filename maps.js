@@ -23,7 +23,7 @@ var drawMap = function(geoData,stateData){
   stateData.forEach(function(state){
     stateDict[state.Name.trim()]=state.Postal;
     stateDict[state.Postal.trim()]=state.poverty;
-    stateDict[state.FIPS.trim()]=state.Age017;
+    stateDict[state.FIPS.trim()]=state.AllAges;
   });
   console.log(stateDict);
 
@@ -51,7 +51,8 @@ var drawMap = function(geoData,stateData){
                 .domain([0,4000000]);
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([1700000]);
+                  .domain([7,20]);
+
 
   states.append('path')
         .attr('d',stateGenerator)
@@ -65,9 +66,33 @@ var drawMap = function(geoData,stateData){
           return color(str);
         });
 
-  document.getElementById('b').onclick = function(d){
-    var str = d.properties.ESTIMATE2
+  document.getElementById('allPop').onclick = function(d){
+    states.append('path')
+          .attr('d',stateGenerator)
+          .attr('stroke','green')
+          .attr('fill', function(d){
+            //console.log(parseInt(d.poverty))
+            var str = d.properties.ESTIMATE
+            str = str.replace(/,/g,"")
+            str = parseInt(str)
+            console.log(str)
+            return color(str);
+          });
   };
+
+document.getElementById('allPer').onclick = function(d){
+  states.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE2
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          console.log(str)
+          return color2(str);
+        });
+};
 
   states.append('text')
         .text(function(d){
