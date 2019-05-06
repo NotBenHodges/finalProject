@@ -151,23 +151,23 @@ var drawMap2 = function(geoData,stateData){
   var stateGenerator = d3.geoPath()
                           .projection(projection);
 
-  var stateDict = {}
+  var countyDict = {}
 
-  var stateDict2 = {}
+  var countyDict2 = {}
 
-  stateData.forEach(function(state){
-    stateDict[state.Name.trim()]=state.Postal;
-    stateDict[state.Postal.trim()]=state.poverty;
-    stateDict[state.FIPS.trim()]=state.AllAges;
-    stateDict2[state.FIPS.trim()]=state.Median;
+  stateData.forEach(function(county){
+    countyDict[county.Name.trim()]=county.Postal;
+    countyDict[county.Postal.trim()]=county.poverty;
+    countyDict[county.FIPS.trim()]=county.AllAges;
+    countyDict2[county.FIPS.trim()]=county.Median;
   });
-  console.log(stateDict2);
+  console.log(countyDict2);
 
   geoData.features.forEach(function(state){
-    state.properties.ABBR = stateDict[state.properties.NAME]
-    state.properties.ESTIMATE = stateDict[state.properties.ABBR]
-    state.properties.ESTIMATE2 = stateDict[state.properties.STATE]
-    state.properties.MEDIAN = stateDict2[state.properties.STATE]
+    county.properties.ABBR = countyDict[state.properties.NAME]
+    state.properties.ESTIMATE = countyDict[state.properties.ABBR]
+    state.properties.ESTIMATE2 = countyDict[state.properties.STATE]
+    state.properties.MEDIAN = countyDict2[state.properties.STATE]
     console.log(state.properties.MEDIAN);
   });
   console.log(geoData)
