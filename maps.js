@@ -51,6 +51,7 @@ var drawMap = function(geoData,stateData){
                   .append('g')
                   .classed('state',true);
 
+
   var color = d3.scaleSequential(d3.interpolateGreens)
                 .domain([0,4000000]);
 
@@ -71,7 +72,10 @@ var drawMap = function(geoData,stateData){
           str = parseInt(str)
           console.log(str)
           return color(str);
-        });
+        })
+        .on('mouseover', function(d){
+          
+        })
 
   document.getElementById('allPop').onclick = function(d){
     document.getElementById('title').innerHTML = 'Poverty by Population Size'
