@@ -58,7 +58,7 @@ var drawMap = function(geoData,stateData){
 
 
   var color = d3.scaleSequential(d3.interpolateGreens)
-                .domain([0,4000000]);
+                .domain([61000,4000000]);
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([7,20]);
@@ -155,20 +155,20 @@ var drawMap2 = function(geoData,stateData){
 
   var countyDict2 = {}
 
+  var countyDict3 = {}
+
   stateData.forEach(function(county){
-    countyDict[county.Name.trim()]=county.Postal;
-    countyDict[county.Postal.trim()]=county.poverty;
-    countyDict[county.FIPS.trim()]=county.AllAges;
-    countyDict2[county.FIPS.trim()]=county.Median;
+    countyDict[county.FIPS.trim()]=county.poverty;
+    countyDict2[county.FIPS.trim()]=county.AllAges;
+    countyDict3[county.FIPS.trim()]=county.Median;
   });
   console.log(countyDict2);
 
-  geoData.features.forEach(function(state){
-    county.properties.ABBR = countyDict[state.properties.NAME]
-    state.properties.ESTIMATE = countyDict[state.properties.ABBR]
-    state.properties.ESTIMATE2 = countyDict[state.properties.STATE]
-    state.properties.MEDIAN = countyDict2[state.properties.STATE]
-    console.log(state.properties.MEDIAN);
+  geoData.features.forEach(function(county){
+    county.properties.ESTIMATE = countyDict[county.properties.COUNTY]
+    county.properties.ESTIMATE2 = countyDict[county.properties.COUNTY]
+    county.properties.MEDIAN = countyDict3[county.properties.COUNTY]
+    console.log(county.properties.MEDIAN);
   });
   console.log(geoData)
 
@@ -186,10 +186,10 @@ var drawMap2 = function(geoData,stateData){
 
 
   var color = d3.scaleSequential(d3.interpolateGreens)
-                .domain([0,4000000]);
+                .domain([0,200000]);
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([7,20]);
+                  .domain([10,40]);
 
   var color3 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([40000,85000]);
