@@ -9,7 +9,7 @@ Promise.all([geoP,stateP,geo2P,state2P]).then(function(values){
   var geoData2 = values[2];
   var stateData2 = values[3];
   drawMap(geoData,stateData)
-  drawMap2(geoData2,stateData2)
+  //drawMap2(geoData2,stateData2)
 });
 
 var h = 600;
@@ -90,20 +90,33 @@ var drawMap = function(geoData,stateData){
   var color7 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([10,30]);
 
+  var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
   states.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
         .attr('fill', function(d){
-
           var str = d.properties.ESTIMATE
           str = str.replace(/,/g,"")
           str = parseInt(str)
           console.log(str)
           return color(str);
         })
-        .on('mouseover', function(d){
-
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.ESTIMATE)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 28) + "px");
         })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 
   document.getElementById('allPop').onclick = function(d){
     document.getElementById('title').innerHTML = 'Poverty by Population Size'
@@ -300,6 +313,11 @@ var drawMap2 = function(geoData,stateData){
   var color7 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([10,50]);
 
+  var tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+
   var counter = 0;
 
   counties.append('path')
@@ -313,9 +331,19 @@ var drawMap2 = function(geoData,stateData){
           //console.log(counter)
           return color(str);
         })
-        .on('mouseover', function(d){
-
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.NAME)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 28) + "px");
         })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 
   document.getElementById('allPop2').onclick = function(d){
     document.getElementById('title2').innerHTML = 'Poverty by Population Size'
