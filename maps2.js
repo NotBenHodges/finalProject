@@ -8,7 +8,7 @@ Promise.all([geo2P,state2P]).then(function(values){
 });
 
 var h = 600;
-var w = 800;
+var w = 760;
 
 var drawMap2 = function(geoData,stateData){
 
