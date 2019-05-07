@@ -79,16 +79,16 @@ var drawMap = function(geoData,stateData){
                   .domain([40000,85000]);
 
   var color4 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([40000,85000]);
+                  .domain([20000,700000]);
 
   var color5 = d3.scaleSequential(d3.interpolateGreens)
-                .domain([40000,85000]);
+                .domain([10,30]);
 
   var color6 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([40000,85000]);
+                  .domain([20000,700000]);
 
   var color7 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([40000,85000]);
+                  .domain([10,30]);
 
   states.append('path')
         .attr('d',stateGenerator)
@@ -150,6 +150,65 @@ document.getElementById('median').onclick = function(d){
         });
 };
 
+document.getElementById('under').onclick = function(d){
+  document.getElementById('title').innerHTML = 'Poverty by Population Size'
+  states.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE3
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color4(str);
+        });
+};
+
+document.getElementById('underPer').onclick = function(d){
+  document.getElementById('title').innerHTML = 'Poverty by Population Size'
+  states.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE4
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color5(str);
+        });
+};
+
+document.getElementById('fam').onclick = function(d){
+  document.getElementById('title').innerHTML = 'Poverty by Population Size'
+  states.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE5
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color6(str);
+        });
+};
+
+document.getElementById('famPer').onclick = function(d){
+  document.getElementById('title').innerHTML = 'Poverty by Population Size'
+  states.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE6
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color7(str);
+        });
+};
 /*
   states.append('text')
         .text(function(d){
@@ -181,10 +240,18 @@ var drawMap2 = function(geoData,stateData){
 
   var countyDict3 = {}
 
+  var countyDict4 = {}
+
+  var countyDict5 = {}
+
   stateData.forEach(function(county){
     countyDict[county.FIPS.trim()]=county.poverty;
     countyDict2[county.FIPS.trim()]=county.AllAges;
     countyDict3[county.FIPS.trim()]=county.Median;
+    countyDict4[county.FIPS.trim()]=county.Age017;
+    countyDict4[county.Name.trim()]=county.Age017Per;
+    countyDict5[county.FIPS.trim()]=county.Fam;
+    countyDict5[county.Name.trim()]=county.FamPer;
   });
   console.log(countyDict2);
 
@@ -192,6 +259,10 @@ var drawMap2 = function(geoData,stateData){
     county.properties.ESTIMATE = countyDict[county.properties.COUNTY]
     county.properties.ESTIMATE2 = countyDict[county.properties.COUNTY]
     county.properties.MEDIAN = countyDict3[county.properties.COUNTY]
+    county.properties.ESTIMATE3 = countyDict4[county.properties.COUNTY]
+    county.properties.ESTIMATE4 = countyDict4[county.properties.NAME]
+    county.properties.ESTIMATE5 = countyDict5[county.properties.COUNTY]
+    county.properties.ESTIMATE6 = countyDict5[county.properties.NAME]
     //console.log(county.properties.ESTIMATE);
   });
   console.log(geoData)
@@ -218,16 +289,16 @@ var drawMap2 = function(geoData,stateData){
                   .domain([40000,85000]);
 
   var color4 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([40000,85000]);
+                  .domain([0,20000]);
 
   var color5 = d3.scaleSequential(d3.interpolateGreens)
-                .domain([40000,85000]);
+                .domain([10,50]);
 
   var color6 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([40000,85000]);
+                  .domain([0,5000]);
 
   var color7 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([40000,85000]);
+                  .domain([10,50]);
 
   var counter = 0;
 
@@ -288,6 +359,66 @@ document.getElementById('median2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color3(str);
+        });
+};
+
+document.getElementById('under2').onclick = function(d){
+  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  counties.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE3
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color4(str);
+        });
+};
+
+document.getElementById('underPer2').onclick = function(d){
+  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  counties.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE4
+          //str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color5(str);
+        });
+};
+
+document.getElementById('fam2').onclick = function(d){
+  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  counties.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE5
+          str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color6(str);
+        });
+};
+
+document.getElementById('famPer2').onclick = function(d){
+  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  counties.append('path')
+        .attr('d',stateGenerator)
+        .attr('stroke','green')
+        .attr('fill', function(d){
+          //console.log(parseInt(d.poverty))
+          var str = d.properties.ESTIMATE6
+          //str = str.replace(/,/g,"")
+          str = parseInt(str)
+          //console.log(str)
+          return color7(str);
         });
 };
 }
