@@ -112,11 +112,17 @@ var drawMap = function(geoData,stateData){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.ESTIMATE)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
@@ -138,11 +144,17 @@ var drawMap = function(geoData,stateData){
                 tooltip.transition()
                 .duration(200)
                 .style("opacity", .9);
+                tooltip2.transition()
+                .duration(200)
+                .style("opacity", .9);
                 tooltip2.html(d.properties.NAME)
                 tooltip.html(d.properties.ESTIMATE)
           })
           .on("mouseout", function(d) {
               tooltip.transition()
+              .duration(500)
+              .style("opacity", 0);
+              tooltip2.transition()
               .duration(500)
               .style("opacity", 0);
             });
@@ -165,11 +177,17 @@ document.getElementById('allPer').onclick = function(d){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.ESTIMATE2)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
@@ -192,11 +210,17 @@ document.getElementById('median').onclick = function(d){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.MEDIAN)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
@@ -219,11 +243,17 @@ document.getElementById('under').onclick = function(d){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.ESTIMATE3)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
@@ -246,11 +276,17 @@ document.getElementById('underPer').onclick = function(d){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.ESTIMATE4)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
@@ -273,11 +309,17 @@ document.getElementById('fam').onclick = function(d){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.ESTIMATE5)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
@@ -300,11 +342,17 @@ document.getElementById('famPer').onclick = function(d){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
+              tooltip2.transition()
+              .duration(200)
+              .style("opacity", .9);
               tooltip2.html(d.properties.NAME)
               tooltip.html(d.properties.ESTIMATE6)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+            tooltip2.transition()
             .duration(500)
             .style("opacity", 0);
           });
