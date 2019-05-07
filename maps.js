@@ -27,20 +27,32 @@ var drawMap = function(geoData,stateData){
 
   var stateDict2 = {}
 
+  var stateDict3 = {}
+
+  var stateDict4 = {}
+
   stateData.forEach(function(state){
     stateDict[state.Name.trim()]=state.Postal;
     stateDict[state.Postal.trim()]=state.poverty;
     stateDict[state.FIPS.trim()]=state.AllAges;
     stateDict2[state.FIPS.trim()]=state.Median;
+    stateDict3[state.FIPS.trim()]=state.Age017;
+    stateDict3[state.Name.trim()]=state.Age017Per;
+    stateDict4[state.FIPS.trim()]=state.Fam;
+    stateDict4[state.Name.trim()]=state.FamPer;
   });
-  console.log(stateDict);
+  console.log(stateDict3);
 
   geoData.features.forEach(function(state){
     state.properties.ABBR = stateDict[state.properties.NAME]
     state.properties.ESTIMATE = stateDict[state.properties.ABBR]
     state.properties.ESTIMATE2 = stateDict[state.properties.STATE]
     state.properties.MEDIAN = stateDict2[state.properties.STATE]
-    //console.log(state.properties.MEDIAN);
+    state.properties.ESTIMATE3 = stateDict3[state.properties.STATE]
+    state.properties.ESTIMATE4 = stateDict3[state.properties.NAME]
+    state.properties.ESTIMATE5 = stateDict4[state.properties.STATE]
+    state.properties.ESTIMATE6 = stateDict4[state.properties.NAME]
+    //console.log(state.properties.ESTIMATE4);
   });
   console.log(geoData)
 
@@ -58,7 +70,7 @@ var drawMap = function(geoData,stateData){
 
 
   var color = d3.scaleSequential(d3.interpolateGreens)
-                .domain([61000,4000000]);
+                .domain([61000,2000000]);
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([7,20]);
@@ -66,6 +78,17 @@ var drawMap = function(geoData,stateData){
   var color3 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([40000,85000]);
 
+  var color4 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
+
+  var color5 = d3.scaleSequential(d3.interpolateGreens)
+                .domain([40000,85000]);
+
+  var color6 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
+
+  var color7 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
 
   states.append('path')
         .attr('d',stateGenerator)
@@ -127,6 +150,7 @@ document.getElementById('median').onclick = function(d){
         });
 };
 
+/*
   states.append('text')
         .text(function(d){
           return d.properties.ABBR;
@@ -140,7 +164,7 @@ document.getElementById('median').onclick = function(d){
 
   document.getElementById('allPop').onmouseover = function(d){
     console.log('hello Ben');
-  };
+  };*/
 }
 
 var drawMap2 = function(geoData,stateData){
@@ -185,12 +209,24 @@ var drawMap2 = function(geoData,stateData){
                   .classed('county',true);
 
   var color = d3.scaleSequential(d3.interpolateGreens)
-                .domain([0,200000]);
+                .domain([0,10000]);
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([10,40]);
+                  .domain([10,30]);
 
   var color3 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
+
+  var color4 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
+
+  var color5 = d3.scaleSequential(d3.interpolateGreens)
+                .domain([40000,85000]);
+
+  var color6 = d3.scaleSequential(d3.interpolateGreens)
+                  .domain([40000,85000]);
+
+  var color7 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([40000,85000]);
 
   var counter = 0;
@@ -211,7 +247,7 @@ var drawMap2 = function(geoData,stateData){
         })
 
   document.getElementById('allPop2').onclick = function(d){
-    document.getElementById('title').innerHTML = 'Poverty by Population Size'
+    document.getElementById('title2').innerHTML = 'Poverty by Population Size'
     counties.append('path')
           .attr('d',stateGenerator)
           .attr('stroke','green')
@@ -226,7 +262,7 @@ var drawMap2 = function(geoData,stateData){
   };
 
 document.getElementById('allPer2').onclick = function(d){
-  document.getElementById('title').innerHTML = 'Poverty by Percentage'
+  document.getElementById('title2').innerHTML = 'Poverty by Percentage'
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
@@ -241,7 +277,7 @@ document.getElementById('allPer2').onclick = function(d){
 };
 
 document.getElementById('median2').onclick = function(d){
-  document.getElementById('title').innerHTML = 'Median Household Income'
+  document.getElementById('title2').innerHTML = 'Median Household Income'
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
