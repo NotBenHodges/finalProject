@@ -7,8 +7,8 @@ Promise.all([geo2P,state2P]).then(function(values){
   drawMap2(geoData2,stateData2)
 });
 
-var w = 600;
-var h = 800;
+var h = 600;
+var w = 800;
 
 var drawMap2 = function(geoData,stateData){
 
@@ -106,9 +106,7 @@ var drawMap2 = function(geoData,stateData){
               tooltip.transition()
               .duration(200)
               .style("opacity", .9);
-              tooltip.html(d.properties.NAME)
-              .style("left", (d3.event.pageX) + "px")
-              .style("top", (d3.event.pageY - 28) + "px");
+              tooltip.html(d.properties.ESTIMATE)
         })
         .on("mouseout", function(d) {
             tooltip.transition()
@@ -128,7 +126,18 @@ var drawMap2 = function(geoData,stateData){
             str = parseInt(str)
             //console.log(str)
             return color(str);
-          });
+          })
+          .on("mouseover", function(d) {
+                tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+                tooltip.html(d.properties.ESTIMATE)
+          })
+          .on("mouseout", function(d) {
+              tooltip.transition()
+              .duration(500)
+              .style("opacity", 0);
+            });
   };
 
 document.getElementById('allPer2').onclick = function(d){
@@ -143,7 +152,18 @@ document.getElementById('allPer2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color2(str);
-        });
+        })
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.ESTIMATE2)
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 };
 
 document.getElementById('median2').onclick = function(d){
@@ -158,7 +178,18 @@ document.getElementById('median2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color3(str);
-        });
+        })
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.MEDIAN)
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 };
 
 document.getElementById('under2').onclick = function(d){
@@ -173,7 +204,18 @@ document.getElementById('under2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color4(str);
-        });
+        })
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.ESTIMATE3)
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 };
 
 document.getElementById('underPer2').onclick = function(d){
@@ -188,7 +230,18 @@ document.getElementById('underPer2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color5(str);
-        });
+        })
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.ESTIMATE4)
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 };
 
 document.getElementById('fam2').onclick = function(d){
@@ -203,7 +256,18 @@ document.getElementById('fam2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color6(str);
-        });
+        })
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.ESTIMATE5)
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 };
 
 document.getElementById('famPer2').onclick = function(d){
@@ -218,6 +282,17 @@ document.getElementById('famPer2').onclick = function(d){
           str = parseInt(str)
           //console.log(str)
           return color7(str);
-        });
+        })
+        .on("mouseover", function(d) {
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.ESTIMATE6)
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
 };
 }
