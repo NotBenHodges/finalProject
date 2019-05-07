@@ -50,4 +50,6 @@ path:hover{
 .tooltip{
   float:right;
   clear: both;
+  font-size: 20px;
+  font-weight: bold;
 }
