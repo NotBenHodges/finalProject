@@ -41,7 +41,7 @@ var drawMap2 = function(geoData,stateData){
 
   geoData.features.forEach(function(county){
     county.properties.ESTIMATE = countyDict[county.properties.COUNTY]
-    county.properties.ESTIMATE2 = countyDict[county.properties.COUNTY]
+    county.properties.ESTIMATE2 = countyDict2[county.properties.COUNTY]
     county.properties.MEDIAN = countyDict3[county.properties.COUNTY]
     county.properties.ESTIMATE3 = countyDict4[county.properties.COUNTY]
     county.properties.ESTIMATE4 = countyDict4[county.properties.NAME]
@@ -67,24 +67,28 @@ var drawMap2 = function(geoData,stateData){
                 .domain([0,10000]);
 
   var color2 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([10,30]);
+                  .domain([10,19]);
 
   var color3 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([40000,85000]);
 
   var color4 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([0,20000]);
+                  .domain([0,4000]);
 
   var color5 = d3.scaleSequential(d3.interpolateGreens)
                 .domain([10,50]);
 
   var color6 = d3.scaleSequential(d3.interpolateGreens)
-                  .domain([0,5000]);
+                  .domain([0,4000]);
 
   var color7 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([10,50]);
 
   var tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+  var tooltip2 = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
