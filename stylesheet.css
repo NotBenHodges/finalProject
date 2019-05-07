@@ -8,6 +8,10 @@ body{
   clear: both;
 }
 
+.buttons:hover{
+  background-color: grey;
+}
+
 #tooltip{
   position: absolute;
   width: 200px;

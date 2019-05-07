@@ -40,7 +40,7 @@ var drawMap = function(geoData,stateData){
     state.properties.ESTIMATE = stateDict[state.properties.ABBR]
     state.properties.ESTIMATE2 = stateDict[state.properties.STATE]
     state.properties.MEDIAN = stateDict2[state.properties.STATE]
-    console.log(state.properties.MEDIAN);
+    //console.log(state.properties.MEDIAN);
   });
   console.log(geoData)
 
@@ -71,7 +71,7 @@ var drawMap = function(geoData,stateData){
         .attr('d',stateGenerator)
         .attr('stroke','green')
         .attr('fill', function(d){
-          //console.log(parseInt(d.poverty))
+
           var str = d.properties.ESTIMATE
           str = str.replace(/,/g,"")
           str = parseInt(str)
@@ -168,7 +168,7 @@ var drawMap2 = function(geoData,stateData){
     county.properties.ESTIMATE = countyDict[county.properties.COUNTY]
     county.properties.ESTIMATE2 = countyDict[county.properties.COUNTY]
     county.properties.MEDIAN = countyDict3[county.properties.COUNTY]
-    console.log(county.properties.MEDIAN);
+    //console.log(county.properties.ESTIMATE);
   });
   console.log(geoData)
 
@@ -184,7 +184,6 @@ var drawMap2 = function(geoData,stateData){
                   .append('g')
                   .classed('county',true);
 
-
   var color = d3.scaleSequential(d3.interpolateGreens)
                 .domain([0,200000]);
 
@@ -194,16 +193,17 @@ var drawMap2 = function(geoData,stateData){
   var color3 = d3.scaleSequential(d3.interpolateGreens)
                   .domain([40000,85000]);
 
+  var counter = 0;
 
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
         .attr('fill', function(d){
-          //console.log(parseInt(d.poverty))
+          counter += 1
           var str = d.properties.ESTIMATE
           str = str.replace(/,/g,"")
           str = parseInt(str)
-          console.log(str)
+          //console.log(counter)
           return color(str);
         })
         .on('mouseover', function(d){
@@ -233,7 +233,7 @@ document.getElementById('allPer2').onclick = function(d){
         .attr('fill', function(d){
           //console.log(parseInt(d.poverty))
           var str = d.properties.ESTIMATE2
-          str = str.replace(/,/g,"")
+          //str = str.replace(/,/g,"")
           str = parseInt(str)
           //console.log(str)
           return color2(str);
