@@ -259,6 +259,8 @@ document.getElementById('under2').onclick = function(d){
 
 document.getElementById('underPer2').onclick = function(d){
   document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  counter += 1
+  console.log(counter)
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
