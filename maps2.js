@@ -225,7 +225,7 @@ document.getElementById('median2').onclick = function(d){
 };
 
 document.getElementById('under2').onclick = function(d){
-  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  document.getElementById('title2').innerHTML = 'Poverty by Population Size(0-17)'
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
@@ -258,7 +258,7 @@ document.getElementById('under2').onclick = function(d){
 };
 
 document.getElementById('underPer2').onclick = function(d){
-  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  document.getElementById('title2').innerHTML = 'Poverty by Percentage(0-17)'
   counter += 1
   console.log(counter)
   counties.append('path')
@@ -293,7 +293,7 @@ document.getElementById('underPer2').onclick = function(d){
 };
 
 document.getElementById('fam2').onclick = function(d){
-  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  document.getElementById('title2').innerHTML = 'Poverty by Population Size(Families 5-17)'
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
@@ -326,7 +326,7 @@ document.getElementById('fam2').onclick = function(d){
 };
 
 document.getElementById('famPer2').onclick = function(d){
-  document.getElementById('title2').innerHTML = 'Poverty by Population Size'
+  document.getElementById('title2').innerHTML = 'Poverty by Percentage (Familes 5-17)'
   counties.append('path')
         .attr('d',stateGenerator)
         .attr('stroke','green')
